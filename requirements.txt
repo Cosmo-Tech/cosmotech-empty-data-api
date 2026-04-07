@@ -1,7 +1,7 @@
 fastapi[standard]~=0.135.2
 PyJWT[crypto]~=2.12.1
 cryptography~=46.0.6
-sqlmodel~=0.0.37
+sqlmodel~=0.0.38
 alembic~=1.18.4
 pyyaml~=6.0.3
 cosmotech-api~=5.0.1
