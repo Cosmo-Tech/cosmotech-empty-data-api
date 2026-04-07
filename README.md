@@ -1,4 +1,4 @@
-# Asset_Investment_Planning_API
+# Basic data layer API
 
 Custom Data API for AIP project
 
