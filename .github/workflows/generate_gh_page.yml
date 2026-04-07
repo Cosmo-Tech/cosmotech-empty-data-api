@@ -1,0 +1,27 @@
+name: generate_github_page
+on:
+  push:
+    branches:
+      - main
+env:
+  NO_MKDOCS_2_WARNING: 1
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - run: pip install -e .[doc]
+      - name: Extract version
+        shell: bash
+        run: echo "##[set-output name=version;]$(python -c 'from cosmotech.example_api import __version__; print(__version__)')"
+        id: version
+      - name: Configure Git user
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+      - run: mike deploy --push ${{ steps.version.outputs.version }}

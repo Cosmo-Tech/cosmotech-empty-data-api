@@ -1,0 +1,20 @@
+[postgres]
+enabled = "false"
+host = "postgresql.host.url"
+port = 5432
+database = "mydatabase"
+schema = "public"
+username = "psql"
+password = "PSQL_PASSWORD"
+
+[database]
+reset = "false"
+
+[alembic]
+script_location = "cosmotech/example_api/migrations"
+
+[cors]
+origins = []
+
+[usage]
+enabled = "true"

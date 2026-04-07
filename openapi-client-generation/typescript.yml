@@ -1,0 +1,22 @@
+# TypeScript client configuration
+npmName: "@cosmotech/example-client"
+npmVersion: 0.0.1-rc1
+npmRepository: https://www.npmjs.com/package/@cosmotech/example-client
+
+# GitHub repository information
+gitUserId: Cosmo-Tech
+gitRepoId: cosmotech-example-typescript-client
+
+# Required package definitions
+apiPackage: api
+modelPackage: models
+
+# TypeScript generation options
+supportsES6: true
+modelPropertyNaming: camelCase
+enumPropertyNaming: UPPERCASE
+withSeparateModelsAndApi: true
+
+# Additional metadata
+npmAuthor: Cosmo Tech
+npmDescription: Example TypeScript client generated from OpenAPI specification

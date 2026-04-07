@@ -1,0 +1,28 @@
+[run]
+source = cosmotech.example_api
+omit =
+    */tests/*
+    */site-packages/*
+    */__pycache__/*
+    */migrations/*
+    */__main__.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if __name__ == .__main__.:
+    raise NotImplementedError
+    pass
+    @abstractmethod
+precision = 2
+skip_covered = true
+fail_under = 80
+
+[html]
+directory = htmlcov
+skip_covered = false
+skip_empty = true
+
+[xml]
+output = coverage.xml

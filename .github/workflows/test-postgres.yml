@@ -1,0 +1,53 @@
+name: PostgreSQL Migration Tests
+
+on:
+  push:
+    branches: [ main, 'feature/*', 'release/*' ]
+  pull_request:
+    branches: [ main, 'feature/*', 'release/*']
+
+jobs:
+  test-migrations:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: test_db
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[test]"
+
+    - name: Wait for PostgreSQL
+      run: |
+        for i in {1..30}; do
+          pg_isready -h localhost -p 5433 -U test_user && break
+          echo "Waiting for postgres..."
+          sleep 1
+        done
+
+    - name: Run all tests
+      run: |
+        pytest -v tests/ -n 1 -m requires_postgres --no-cov
+      env:
+        CONFIG_PATH: config.test.toml

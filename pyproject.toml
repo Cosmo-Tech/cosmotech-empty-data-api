@@ -1,0 +1,68 @@
+[metadata]
+licence_files = ["LICENSE"]
+
+[project]
+name = "cosmotech-example-api"
+authors = [{ name = "Cosmo Tech", email = "platform@cosmotech.com" }]
+description = "Empty data API example for Cosmo-Tech"
+urls.Homepage = "https://www.cosmotech.com"
+urls.Source = "https://github.com/Cosmo-Tech/cosmotech-empty-data-api"
+urls.Documentation = "https://cosmo-tech.github.io/cosmotech-empty-data-api"
+dynamic = ["version", "dependencies", "optional-dependencies"]
+readme = { file = "README.md", content-type = "text/markdown" }
+
+
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+addopts = "-n auto --cov-report term-missing:skip-covered --cov=cosmotech.example_api"
+markers = [
+    "requires_postgres: marks tests as requiring a PostgreSQL database (deselect with '-m \"not requires_postgres\"')",
+]
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | generated
+  | __pycache__
+)/
+'''
+
+[tool.setuptools]
+include-package-data = true
+package-data."*" = [
+    "requirements.txt",
+    "requirements.doc.txt",
+    "requirements.test.txt",
+    "requirements.dev.txt"
+]
+zip-safe = false
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cosmotech.*"]
+
+[tool.setuptools.dynamic]
+version.attr = "cosmotech.example_api.__version__"
+dependencies.file = "requirements.txt"
+optional-dependencies.doc.file = "requirements.doc.txt"
+optional-dependencies.test.file = "requirements.test.txt"
+optional-dependencies.dev.file = "requirements.dev.txt"
+optional-dependencies.all.file = "requirements.all.txt"

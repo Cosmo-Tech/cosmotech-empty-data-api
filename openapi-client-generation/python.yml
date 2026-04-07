@@ -1,0 +1,21 @@
+lazyImports: true
+packageName: Example Python Client
+packageVersion: 0.0.1-rc1
+packageDescription: Example Python client generated from OpenAPI specification
+projectName: cosmotech-example-python-client
+
+# Author information
+authorName: Cosmo Tech
+authorEmail: platform@cosmotech.com
+
+# Project URLs
+homePageUrl: https://www.cosmotech.com
+documentationUrl: https://cosmo-tech.github.io/cosmotech-example-python-client
+sourceUrl: https://github.com/Cosmo-Tech/cosmotech-example-python-client
+
+# Library settings
+library: urllib3
+generateSourceCodeOnly: false
+
+# Python-specific settings
+pythonVersion: ">=3.11"

@@ -1,0 +1,1 @@
+cosmotech-example-api[doc,test,dev]
