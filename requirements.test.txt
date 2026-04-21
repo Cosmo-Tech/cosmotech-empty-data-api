@@ -5,4 +5,4 @@ pytest-cov~=7.1.0
 pytest-docker~=3.2.5
 pytest-xdist~=3.8.0
 httpx~=0.28.1
-Faker~=40.13.0
+Faker~=40.15.0
